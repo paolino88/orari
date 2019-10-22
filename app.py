@@ -562,36 +562,30 @@ def blu_andata():
         urllib.request.urlretrieve(
             'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/invernale/blu.pdf',
             'blu.pdf')
-        df = read_pdf('blu.pdf', multiple_tables=True)
+        df = read_pdf('blu.pdf')
 
         if (num_month < 5 or num_month > 9):
 
-            ind0 = df[0].iloc[:, 0].dropna().str.contains('Via Bonarelli')
+            ind0 = df.iloc[:, 0].dropna().str.contains('Via Bonarelli')
             idx0 = ind0[ind0].index.values
-            lis0 = df[0].iloc[idx0[0]].dropna().values
-            ind1 = df[1].iloc[:, 0].dropna().str.contains('Via Bonarelli')
-            idx1 = ind1[ind1].index.values
-            lis00 = np.concatenate((df[1].iloc[idx1[0]].dropna().values, df[1].iloc[idx1[1]].dropna().values), axis=0)
+            lis0 = df.iloc[idx0[0]].dropna().values
+            lis00 = df.iloc[idx0[1]].dropna().values
             lis = np.concatenate((lis0, lis00), axis=0)
 
             var='ORARIO INVERNALE'
         elif(num_day != 5):
-            ind0 = df[0].iloc[:, 0].dropna().str.contains('Via Bonarelli')
+            ind0 = df.iloc[:, 0].dropna().str.contains('Via Bonarelli')
             idx0 = ind0[ind0].index.values
-            lis0 = df[0].iloc[idx0[0]].dropna().values
-            ind1 = df[1].iloc[:, 0].dropna().str.contains('Via Bonarelli')
-            idx1 = ind1[ind1].index.values
-            lis00 = np.concatenate((df[1].iloc[idx1[0]].dropna().values, df[1].iloc[idx1[1]].dropna().values), axis=0)
+            lis0 = df.iloc[idx0[0]].dropna().values
+            lis00 = df.iloc[idx0[1]].dropna().values
             lis = np.concatenate((lis0, lis00), axis=0)
 
             var='ORARIO ESTIVO'
         else:
-            ind0 = df[0].iloc[:, 0].dropna().str.contains('Via Bonarelli')
+            ind0 = df.iloc[:, 0].dropna().str.contains('Via Bonarelli')
             idx0 = ind0[ind0].index.values
-            lis0 = df[0].iloc[idx0[0]].dropna().values
-            ind1 = df[1].iloc[:, 0].dropna().str.contains('Via Bonarelli')
-            idx1 = ind1[ind1].index.values
-            lis00 = np.concatenate((df[1].iloc[idx1[-2]].dropna().values, df[1].iloc[idx1[-1]].dropna().values), axis=0)
+            lis0 = df.iloc[idx0[0]].dropna().values
+            lis00 = df.iloc[idx0[1]].dropna().values
             lis = np.concatenate((lis0, lis00), axis=0)
 
 
@@ -698,33 +692,39 @@ def blu_ritorno():
 
         if (num_month < 5 or num_month > 9):
 
-            ind0 = df[0].iloc[:, 0].dropna().str.contains('Via XXV')
+            ind0 = df.iloc[:, 0].dropna().str.contains('Via XXV')
             idx0 = ind0[ind0].index.values
-            lis0 = df[0].iloc[idx0[0]].dropna().values
-            ind1 = df[1].iloc[:, 0].dropna().str.contains('Via XXV')
-            idx1 = ind1[ind1].index.values
-            lis00 = np.concatenate((df[1].iloc[idx1[1]].dropna().values, df[1].iloc[idx1[2]].dropna().values), axis=0)
-            lis = np.concatenate((lis0, lis00), axis=0)
+            lis0 = df.iloc[idx0[0]].dropna().values
+            lis00 = df.iloc[idx0[1]].dropna().values
+            lis1 = df.iloc[idx0[2]].dropna().values
+            lis11 = df.iloc[idx0[3]].dropna().values
+            lis_ar = np.concatenate((lis0, lis00), axis=0)
+            lis_ar1 = np.concatenate((lis_ar, lis1), axis=0)
+            lis = np.concatenate((lis_ar1, lis11), axis=0)
 
             var = 'ORARIO INVERNALE'
         elif (num_day != 5):
-            ind0 = df[0].iloc[:, 0].dropna().str.contains('Via XXV')
+            ind0 = df.iloc[:, 0].dropna().str.contains('Via XXV')
             idx0 = ind0[ind0].index.values
-            lis0 = df[0].iloc[idx0[0]].dropna().values
-            ind1 = df[1].iloc[:, 0].dropna().str.contains('Via XXV')
-            idx1 = ind1[ind1].index.values
-            lis00 = np.concatenate((df[1].iloc[idx1[1]].dropna().values, df[1].iloc[idx1[2]].dropna().values), axis=0)
-            lis = np.concatenate((lis0, lis00), axis=0)
+            lis0 = df.iloc[idx0[0]].dropna().values
+            lis00 = df.iloc[idx0[1]].dropna().values
+            lis1 = df.iloc[idx0[2]].dropna().values
+            lis11 = df.iloc[idx0[3]].dropna().values
+            lis_ar = np.concatenate((lis0, lis00), axis=0)
+            lis_ar1 = np.concatenate((lis_ar, lis1), axis=0)
+            lis = np.concatenate((lis_ar1, lis11), axis=0)
 
             var = 'ORARIO ESTIVO'
         else:
-            ind0 = df[0].iloc[:, 0].dropna().str.contains('Via XXV')
+            ind0 = df.iloc[:, 0].dropna().str.contains('Via XXV')
             idx0 = ind0[ind0].index.values
-            lis0 = df[0].iloc[idx0[0]].dropna().values
-            ind1 = df[1].iloc[:, 0].dropna().str.contains('Via XXV')
-            idx1 = ind1[ind1].index.values
-            lis00 = np.concatenate((df[1].iloc[idx1[-2]].dropna().values, df[1].iloc[idx1[-1]].dropna().values), axis=0)
-            lis = np.concatenate((lis0, lis00), axis=0)
+            lis0 = df.iloc[idx0[0]].dropna().values
+            lis00 = df.iloc[idx0[1]].dropna().values
+            lis1 = df.iloc[idx0[2]].dropna().values
+            lis11 = df.iloc[idx0[3]].dropna().values
+            lis_ar = np.concatenate((lis0, lis00), axis=0)
+            lis_ar1 = np.concatenate((lis_ar, lis1), axis=0)
+            lis = np.concatenate((lis_ar1, lis11), axis=0)
 
             var = 'VENERDI\' ESTIVO - ORARIO RIDOTTO'
 
