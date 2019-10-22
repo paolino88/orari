@@ -688,7 +688,7 @@ def blu_ritorno():
         urllib.request.urlretrieve(
             'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/invernale/blu.pdf',
             'blu.pdf')
-        df = read_pdf('blu.pdf', multiple_tables=True)
+        df = read_pdf('blu.pdf')
 
         if (num_month < 5 or num_month > 9):
 
