@@ -560,7 +560,7 @@ def blu_andata():
 
     if(num_day != 6 and num_day != 7):
         urllib.request.urlretrieve(
-            'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/estivo/blu.pdf',
+            'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/invernale/blu.pdf',
             'blu.pdf')
         df = read_pdf('blu.pdf', multiple_tables=True)
 
@@ -692,7 +692,7 @@ def blu_ritorno():
 
     if (num_day != 6 and num_day != 7):
         urllib.request.urlretrieve(
-            'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/estivo/blu.pdf',
+            'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/invernale/blu.pdf',
             'blu.pdf')
         df = read_pdf('blu.pdf', multiple_tables=True)
 
